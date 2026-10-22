@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Could Be Your Business Website | Interactive Demo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Glassmorphism & UI Styling */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #9333ea 100%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- TOP DEMO BANNER & INDUSTRY SWITCHER -->
+    <div class="bg-gradient-to-r from-sky-950 via-indigo-950 to-purple-950 border-b border-sky-500/30 px-4 py-2 text-xs font-medium text-slate-200 fixed top-0 left-0 right-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-400/30 text-[10px] font-bold uppercase tracking-wider">
+                    Template Concept
+                </span>
+                <span class="hidden md:inline text-slate-300">Previewing: "This Could Be Your Business Website"</span>
+            </div>
+
+            <!-- Theme Switcher Toggles -->
+            <div class="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0">
+                <span class="text-slate-400 text-[11px] mr-1 hidden lg:inline">Preview Business Type:</span>
+                <button onclick="setTheme('tech')" id="btn-theme-tech" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-sky-600 text-white transition-all flex items-center gap-1 shrink-0">
+                    <i data-lucide="code-2" class="w-3.5 h-3.5"></i> Tech & Digital
+                </button>
+                <button onclick="setTheme('cleaning')" id="btn-theme-cleaning" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all flex items-center gap-1 shrink-0">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Service Business
+                </button>
+                <button onclick="setTheme('contractor')" id="btn-theme-contractor" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all flex items-center gap-1 shrink-0">
+                    <i data-lucide="hammer" class="w-3.5 h-3.5"></i> Trades & Repairs
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-16 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed top-[41px] sm:top-[37px] left-0 right-0 z-40 transition-all duration-300 glass-nav border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div id="brandLogoIcon" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform duration-300">
+                        <i data-lucide="layout" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <span class="text-base sm:text-lg font-extrabold tracking-tight text-white font-sans">
+                            THIS COULD BE <span class="gradient-text">YOUR BUSINESS WEBSITE</span>
+                        </span>
+                        <span id="brandSubTag" class="block text-[10px] text-slate-400 font-medium -mt-0.5">Customizable Layout Concept</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#about" class="hover:text-sky-400 transition-colors">About</a>
+                    <a href="#services" class="hover:text-sky-400 transition-colors">Services</a>
+                    <a href="#reviews" class="hover:text-sky-400 transition-colors">Reviews</a>
+                    <a href="#feedback" class="hover:text-sky-400 transition-colors">Design Feedback</a>
+                    <a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Action Buttons -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <button onclick="openModal('invoiceModal')" class="px-3.5 py-2 text-xs font-semibold text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl transition-all flex items-center gap-1.5">
+                        <i data-lucide="credit-card" class="w-4 h-4 text-sky-400"></i>
+                        Pay Invoice
+                    </button>
+                    <button onclick="openModal('quoteModal')" class="px-4 py-2.5 text-xs font-semibold text-white gradient-btn hover:opacity-95 rounded-xl shadow-lg shadow-sky-500/20 transition-all hover:scale-[1.02] flex items-center gap-1.5">
+                        <i data-lucide="calculator" class="w-4 h-4"></i>
+                        Get a Quote
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
+                    <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-800 bg-slate-900/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-sky-400 font-medium">About</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-sky-400 font-medium">Services</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-sky-400 font-medium">Reviews</a>
+            <a href="#feedback" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-sky-400 font-medium">Feedback</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-sky-400 font-medium">Contact</a>
+            <div class="pt-4 border-t border-slate-800 flex flex-col gap-3">
+                <button onclick="toggleMobileMenu(); openModal('quoteModal')" class="w-full py-3 text-center font-semibold text-white bg-sky-600 rounded-xl flex items-center justify-center gap-2">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Get a Quote
+                </button>
+                <button onclick="toggleMobileMenu(); openModal('invoiceModal')" class="w-full py-3 text-center font-semibold text-slate-300 bg-slate-800 rounded-xl flex items-center justify-center gap-2 border border-slate-700">
+                    <i data-lucide="credit-card" class="w-4 h-4 text-sky-400"></i> Pay Invoice
+                </button>
+                <button onclick="toggleMobileMenu(); openModal('reviewModal')" class="w-full py-3 text-center font-semibold text-slate-300 bg-slate-800 rounded-xl flex items-center justify-center gap-2 border border-slate-700">
+                    <i data-lucide="star" class="w-4 h-4 text-amber-400"></i> Add Review
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-44 pb-20 md:pt-52 md:pb-28 overflow-hidden">
+        <!-- Background Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-600/20 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-purple-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                
+                <!-- Hero Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-300 text-xs font-semibold mb-8 backdrop-blur-md">
+                    <span class="flex h-2 w-2 rounded-full bg-sky-400 animate-ping"></span>
+                    <span id="heroBadgeText">Interactive Business Website Preview</span>
+                </div>
+
+                <!-- Main Prompt Title -->
+                <h1 id="heroTitle" class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                    Do You Like This Website, Or <span class="gradient-text">How Would You Change It?</span>
+                </h1>
+
+                <!-- Subtitle Prompt -->
+                <p id="heroSubtitle" class="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed font-normal">
+                    Imagine this modern layout branded specifically for your business! You can test our instant quote calculator, simulate online invoice payments, submit live customer reviews, or send us your feedback.
+                </p>
+
+                <!-- Hero Interactive Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                    <button onclick="openModal('quoteModal')" class="px-6 py-3.5 text-xs sm:text-sm font-bold text-white gradient-btn hover:opacity-95 rounded-2xl shadow-xl shadow-sky-500/20 transition-all hover:scale-[1.03] flex items-center justify-center gap-2">
+                        <i data-lucide="calculator" class="w-4 h-4"></i>
+                        Get a Quote
+                    </button>
+                    
+                    <button onclick="openModal('invoiceModal')" class="px-6 py-3.5 text-xs sm:text-sm font-bold text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-2xl shadow-lg transition-all hover:scale-[1.03] flex items-center justify-center gap-2">
+                        <i data-lucide="receipt" class="w-4 h-4 text-sky-400"></i>
+                        Pay Invoice
+                    </button>
+
+                    <button onclick="openModal('reviewModal')" class="px-6 py-3.5 text-xs sm:text-sm font-bold text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-2xl shadow-lg transition-all hover:scale-[1.03] flex items-center justify-center gap-2">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-400"></i>
+                        Add Review
+                    </button>
+
+                    <a href="#contact" class="px-6 py-3.5 text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 border border-slate-700 rounded-2xl transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Contact Us
+                    </a>
+                </div>
+
+                <!-- Feature Highlights Bar -->
+                <div class="mt-16 pt-10 border-t border-slate-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-3 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <div class="text-xl sm:text-2xl font-extrabold text-white">Customizable</div>
+                        <div class="text-xs text-slate-400 mt-1">Colors, Logo & Copy</div>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <div class="text-xl sm:text-2xl font-extrabold text-white">Interactive</div>
+                        <div class="text-xs text-slate-400 mt-1">Live Forms & Calculator</div>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <div class="text-xl sm:text-2xl font-extrabold text-white">Responsive</div>
+                        <div class="text-xs text-slate-400 mt-1">Mobile, Tablet & PC</div>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <div class="text-xl sm:text-2xl font-extrabold text-white">Lead Ready</div>
+                        <div class="text-xs text-slate-400 mt-1">Built to Convert Leads</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WEBSITE FEEDBACK & CUSTOMIZATION QUESTIONNAIRE SECTION -->
+    <section id="feedback" class="py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-y border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900/90 border border-sky-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl relative">
+                <div class="absolute -top-4 left-8 px-4 py-1 bg-sky-600 text-white text-xs font-bold rounded-full uppercase tracking-wider">
+                    Interactive Design Poll
+                </div>
+
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">How Would You Custom Tailor This Website?</h2>
+                    <p class="text-slate-400 text-sm mt-2">
+                        Tell us what you like or what changes you'd make (colors, layouts, buttons, or features) to tailor it for your ideal business website!
+                    </p>
+                </div>
+
+                <form onsubmit="handleWebsiteFeedback(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">Do you like this overall style?</label>
+                            <select id="pollLike" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                                <option value="Love it!">😍 Love it! It looks sleek and modern.</option>
+                                <option value="Pretty good">👍 Pretty good, but I want custom colors.</option>
+                                <option value="Needs tweaks">🎨 I'd prefer a brighter / lighter theme.</option>
+                                <option value="Different layout">📐 I'd want a different layout structure.</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">What features are most important for your site?</label>
+                            <select id="pollFeature" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                                <option value="Instant Quoting">Calculator / Instant Quoting Tool</option>
+                                <option value="Online Payments">Online Invoice Payments</option>
+                                <option value="Client Reviews">Customer Reviews Showcase</option>
+                                <option value="Contact Booking">Direct Contact / Booking Calendar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-2">How would you change or improve this website?</label>
+                        <textarea id="pollNotes" required rows="3" placeholder="Example: I'd like to add a photo gallery, change the purple accent to emerald green, or add my phone number to the top..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500 resize-none"></textarea>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                        <span class="text-xs text-slate-400 flex items-center gap-1.5">
+                            <i data-lucide="mail" class="w-4 h-4 text-sky-400"></i> Feedback goes directly to <strong>jessicamjaynes@gmail.com</strong>
+                        </span>
+                        <button type="submit" class="w-full sm:w-auto px-6 py-3 text-xs font-bold text-white bg-sky-600 hover:bg-sky-500 rounded-xl shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Send Feedback Notes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 bg-slate-900/50 border-b border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left: Content -->
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-4">
+                        Customizable Website Template
+                    </div>
+                    <h2 id="aboutTitle" class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-6">
+                        About "This Could Be Your Business Website"
+                    </h2>
+                    <p id="aboutText1" class="text-slate-400 text-base leading-relaxed mb-6">
+                        This template demonstrates how local businesses, service providers, contractors, or freelancers can showcase their brand with modern aesthetics, instant online quotes, and payment integration.
+                    </p>
+                    <p id="aboutText2" class="text-slate-400 text-base leading-relaxed mb-8">
+                        Every button, form, color palette, text block, and service offer can be modified to match your exact business name and brand identity.
+                    </p>
+
+                    <!-- Feature Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-sky-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Full Brand Customization</h4>
+                                <p class="text-xs text-slate-400">Replace logo, copy, images, and colors.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-indigo-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Online Invoice Portal</h4>
+                                <p class="text-xs text-slate-400">Clients pay bills digitally with 1 click.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Instant Quote Modals</h4>
+                                <p class="text-xs text-slate-400">Calculate quotes for prospective leads.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-sky-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Live Client Reviews</h4>
+                                <p class="text-xs text-slate-400">Collect and display feedback live.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Card Box -->
+                <div class="relative">
+                    <div class="aspect-square sm:aspect-[4/3] rounded-3xl bg-gradient-to-tr from-sky-950/50 via-slate-900 to-indigo-950/40 border border-slate-800 p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+                        <!-- Decorative mesh -->
+                        <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-sky-600/20 rounded-full blur-3xl"></div>
+                        
+                        <div class="flex justify-between items-start z-10">
+                            <div id="aboutBoxIcon" class="w-12 h-12 rounded-2xl bg-sky-600/20 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                                <i data-lucide="sparkles" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Designed For You
+                            </span>
+                        </div>
+
+                        <div class="z-10 space-y-4 my-6">
+                            <blockquote id="aboutQuote" class="text-lg text-slate-200 font-medium italic">
+                                "Having an interactive quote calculator and instant invoice payment portal doubled our lead conversions in the first month."
+                            </blockquote>
+                        </div>
+
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-800 z-10">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-sky-500 to-indigo-500 flex items-center justify-center font-bold text-white text-sm">
+                                JS
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-white">Jessica M. Jaynes</div>
+                                <div class="text-xs text-sky-400">Web Design & Development Contact</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES HIGHLIGHT SECTION -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-3">
+                    Sample Service Offerings
+                </div>
+                <h2 id="servicesTitle" class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Services Offered</h2>
+                <p id="servicesSubtitle" class="text-slate-400 text-sm sm:text-base mt-3">These services can be tailored to match your exact business offerings.</p>
+            </div>
+
+            <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cards dynamically populated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS / TESTIMONIALS SECTION -->
+    <section id="reviews" class="py-24 bg-slate-900/40 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-3">
+                        Social Proof
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Customer Reviews</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2">Try submitting a review using the "Add Review" button to see how it works live!</p>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <button onclick="openModal('reviewModal')" class="px-5 py-2.5 text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all flex items-center gap-2 shadow-sm">
+                        <i data-lucide="plus-circle" class="w-4 h-4 text-sky-400"></i>
+                        Add Review Live
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reviews Grid (Populated dynamically) -->
+            <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically generated cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info Column -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-3">
+                            Direct Contact
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Contact & Inquiries</h2>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            Interested in adapting this template for your business? Get in touch directly using the form or email below.
+                        </p>
+                    </div>
+
+                    <!-- Direct Email Box -->
+                    <div class="bg-gradient-to-r from-sky-950/60 to-slate-900 border border-sky-500/30 rounded-2xl p-6 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sky-600/20 border border-sky-500/40 flex items-center justify-center text-sky-400 shrink-0">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="text-xs text-sky-300 font-semibold uppercase tracking-wider">Direct Contact Email</span>
+                            <a href="mailto:jessicamjaynes@gmail.com" class="block text-slate-100 font-semibold text-base sm:text-lg hover:text-sky-400 transition-colors truncate">
+                                jessicamjaynes@gmail.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300">
+                                <i data-lucide="clock" class="w-5 h-5 text-sky-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Response Guarantee</div>
+                                <div class="text-sm font-semibold text-slate-200">Replies within 24 hours</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300">
+                                <i data-lucide="code" class="w-5 h-5 text-sky-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Customization</div>
+                                <div class="text-sm font-semibold text-slate-200">Tailored to your business brand</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Column -->
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-xl relative">
+                        <h3 class="text-xl font-bold text-white mb-2">Send a Message</h3>
+                        <p class="text-xs text-slate-400 mb-6">Fill out the fields below to inquire about creating or modifying a website.</p>
+
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2">Your Name *</label>
+                                    <input type="text" required placeholder="Alex Morgan" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2">Email Address *</label>
+                                    <input type="email" required placeholder="alex@example.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500 transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Subject</label>
+                                <input type="text" placeholder="Inquiry about 'This Could Be Your Business Website'" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500 transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Message *</label>
+                                <textarea required rows="4" placeholder="Tell us what you'd like to build or how you'd like to customize this webpage layout..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500 transition-colors resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 text-sm font-bold text-white bg-sky-600 hover:bg-sky-500 rounded-xl shadow-lg shadow-sky-600/20 transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Send Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800/60">
+                
+                <!-- Col 1 -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white">
+                            <i data-lucide="layout" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-base font-bold text-white tracking-tight">THIS COULD BE <span class="gradient-text">YOUR BUSINESS WEBSITE</span></span>
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+                        A modern, fully responsive website layout template. Easily tailored with your business name, services, instant quotes, invoice payments, and customer reviews.
+                    </p>
+                    <div class="text-xs text-sky-400 font-medium">
+                        Direct Email Contact: <a href="mailto:jessicamjaynes@gmail.com" class="underline hover:text-sky-300">jessicamjaynes@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="space-y-3">
+                    <div class="text-xs font-bold text-slate-200 uppercase tracking-wider">Interactive Demos</div>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="openModal('quoteModal')" class="hover:text-sky-400 transition-colors">Test Get a Quote</button></li>
+                        <li><button onclick="openModal('invoiceModal')" class="hover:text-sky-400 transition-colors">Test Pay Invoice</button></li>
+                        <li><button onclick="openModal('reviewModal')" class="hover:text-sky-400 transition-colors">Test Add Review</button></li>
+                        <li><a href="#feedback" class="hover:text-sky-400 transition-colors">Submit Design Feedback</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="space-y-3">
+                    <div class="text-xs font-bold text-slate-200 uppercase tracking-wider">Contact Info</div>
+                    <ul class="space-y-2 text-xs">
+                        <li class="hover:text-slate-300"><a href="mailto:jessicamjaynes@gmail.com">jessicamjaynes@gmail.com</a></li>
+                        <li class="text-slate-500">Fast 24hr Turnaround</li>
+                        <li class="text-slate-500">100% Customizable</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <div>&copy; <span id="year"></span> "This Could Be Your Business Website" - Concept Demo</div>
+                <div>Created with Modern Web Technology</div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- MODAL 1: GET A QUOTE -->
+    <div id="quoteModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-sky-600/20 text-sky-400 border border-sky-500/30 flex items-center justify-center">
+                        <i data-lucide="calculator" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white">Interactive Quote Calculator</h3>
+                        <p class="text-xs text-slate-400">Estimate pricing instantly for your business</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('quoteModal')" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="quoteForm" onsubmit="handleQuoteSubmit(event)" class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Name *</label>
+                        <input type="text" id="quoteName" required placeholder="John Smith" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Email Address *</label>
+                        <input type="email" id="quoteEmail" required placeholder="john@example.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Select Service Tier *</label>
+                    <select id="quoteService" onchange="calculateEstimate()" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                        <!-- Dynamic options -->
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2">Optional Add-ons</label>
+                    <div id="quoteAddons" class="space-y-2">
+                        <!-- Dynamic add-ons -->
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-slate-950 border border-sky-500/30 rounded-xl flex items-center justify-between">
+                    <span class="text-xs text-slate-400">Estimated Total:</span>
+                    <span id="calculatedPrice" class="text-lg font-extrabold text-sky-400">$0</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Project Notes *</label>
+                    <textarea id="quoteDetails" required rows="2" placeholder="Tell us more about what you'd like..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-sky-500 resize-none"></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeModal('quoteModal')" class="px-4 py-2.5 text-xs font-semibold text-slate-400 hover:text-white bg-slate-800/50 hover:bg-slate-800 rounded-xl transition-all">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 text-xs font-bold text-white bg-sky-600 hover:bg-sky-500 rounded-xl shadow-lg shadow-sky-600/30 transition-all flex items-center gap-2">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL 2: PAY INVOICE -->
+    <div id="invoiceModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-purple-600/20 text-purple-400 border border-purple-500/30 flex items-center justify-center">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white">Pay Invoice Online</h3>
+                        <p class="text-xs text-slate-400">Simulated Client Payment Gateway</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('invoiceModal')" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="invoiceForm" onsubmit="handleInvoicePayment(event)" class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Invoice # *</label>
+                        <input type="text" required placeholder="INV-2026-88" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-purple-500 uppercase tracking-wider font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Amount ($) *</label>
+                        <input type="number" required step="0.01" min="1" placeholder="350.00" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-purple-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Client Email Address *</label>
+                    <input type="email" required placeholder="client@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div class="p-4 bg-slate-950/60 border border-slate-800 rounded-2xl space-y-3">
+                    <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                        <span class="font-semibold text-slate-300">Test Card Input</span>
+                        <div class="flex gap-2">
+                            <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] font-mono">VISA</span>
+                            <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] font-mono">MC</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="text" required maxlength="19" placeholder="4242 •••• •••• 4242" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-purple-500 font-mono">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="text" required placeholder="MM / YY" maxlength="5" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-purple-500 font-mono">
+                        <input type="password" required maxlength="4" placeholder="CVC" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-purple-500 font-mono">
+                    </div>
+                </div>
+
+                <div class="pt-2 flex items-center justify-between">
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400">
+                        <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i> Secure Simulator
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button type="button" onclick="closeModal('invoiceModal')" class="px-4 py-2.5 text-xs font-semibold text-slate-400 hover:text-white bg-slate-800/50 hover:bg-slate-800 rounded-xl transition-all">
+                            Cancel
+                        </button>
+                        <button type="submit" id="paySubmitBtn" class="px-5 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-95 rounded-xl shadow-lg shadow-purple-600/30 transition-all flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i>
+                            Process Payment
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL 3: ADD REVIEW -->
+    <div id="reviewModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center">
+                        <i data-lucide="star" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white">Add Customer Review</h3>
+                        <p class="text-xs text-slate-400">Post a live review to this section</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('reviewModal')" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="reviewForm" onsubmit="handleReviewSubmit(event)" class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Name *</label>
+                        <input type="text" id="revName" required placeholder="Taylor Swift" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Business / Role</label>
+                        <input type="text" id="revRole" placeholder="Verified Client" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Rating *</label>
+                    <select id="revRating" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-500">
+                        <option value="5">★★★★★ (5/5 Stars)</option>
+                        <option value="4">★★★★☆ (4/5 Stars)</option>
+                        <option value="3">★★★☆☆ (3/5 Stars)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Review *</label>
+                    <textarea id="revComment" required rows="3" placeholder="Tell us what you think of this website layout concept..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-500 resize-none"></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeModal('reviewModal')" class="px-4 py-2.5 text-xs font-semibold text-slate-400 hover:text-white bg-slate-800/50 hover:bg-slate-800 rounded-xl transition-all">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 text-xs font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-lg shadow-amber-400/20 transition-all flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                        Publish Live Review
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- DYNAMIC SCRIPT LOGIC -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const themes = {
+            tech: {
+                badgeText: 'Custom Web & Software Development Concept',
+                heroTitle: 'Do You Like This Website, Or <span class="gradient-text">How Would You Change It?</span>',
+                heroSubtitle: 'Imagine this sleek layout branded for your business. Test instant quotes, simulate invoice payments, or add customer reviews.',
+                aboutTitle: 'About "This Could Be Your Business Website"',
+                aboutText1: 'Designed for high conversion and modern aesthetics. Easily adjust features, colors, contact options, and services to fit your business.',
+                aboutText2: 'Includes built-in instant quote calculators, payment portals, and live review submissions.',
+                servicesTitle: 'Digital & Software Services',
+                servicesSubtitle: 'Sample cards showcasing custom development and design packages.',
+                services: [
+                    { title: "Custom Web Application", icon: "layout", desc: "Tailor-made responsive website designed specifically for your brand.", price: 1500 },
+                    { title: "E-Commerce & Portals", icon: "layers", desc: "Interactive client portals, payment checkouts, and booking engines.", price: 2800 },
+                    { title: "Monthly Maintenance", icon: "wrench", desc: "Continuous updates, security audits, and dedicated tech support.", price: 250 }
+                ],
+                addons: [
+                    { name: "SEO Optimization Package (+$350)", price: 350 },
+                    { name: "Express 48hr Delivery (+$200)", price: 200 }
+                ],
+                reviews: [
+                    { name: "Sarah Jenkins", role: "Local Business Owner", rating: 5, comment: "I love this template! The instant quote modal and dark theme make it look super high-end.", date: "Today" },
+                    { name: "Michael Chang", role: "Digital Agency Director", rating: 5, comment: "Paying invoices directly online is a huge plus. Simple, responsive, and fast.", date: "2 days ago" }
+                ]
+            },
+            cleaning: {
+                badgeText: 'Home Services & Cleaning Business Concept',
+                heroTitle: 'Spotless Cleaning <span class="gradient-text">Custom Website Template</span>',
+                heroSubtitle: 'See how easily a service business can display flat-rate quotes, online invoice settlement, and client reviews.',
+                aboutTitle: 'Perfect For Home & Commercial Cleaning',
+                aboutText1: 'This layout gives prospective homeowners or offices immediate estimates with zero hassle.',
+                aboutText2: 'Includes online scheduling options and automatic quote pricing calculations.',
+                servicesTitle: 'Cleaning Service Packages',
+                servicesSubtitle: 'Sample service cards for recurring home or deep detail cleaning.',
+                services: [
+                    { title: "Standard Home Clean", icon: "sparkles", desc: "Routine cleaning for kitchens, bathrooms, and living areas.", price: 160 },
+                    { title: "Deep House Reset", icon: "home", desc: "Comprehensive top-to-bottom scrub including appliances.", price: 320 },
+                    { title: "Move-In / Out Detail", icon: "truck", desc: "Thorough reset for rental turnovers and real estate listings.", price: 290 }
+                ],
+                addons: [
+                    { name: "Interior Fridge & Oven Scrub (+$50)", price: 50 },
+                    { name: "Eco-Friendly Organic Supplies (+$25)", price: 25 }
+                ],
+                reviews: [
+                    { name: "Emily Watson", role: "Homeowner", rating: 5, comment: "The quote calculator estimated my home clean perfectly. So smooth!", date: "Yesterday" },
+                    { name: "David Vance", role: "Property Manager", rating: 5, comment: "Having online invoice payments saves me so much administrative time.", date: "4 days ago" }
+                ]
+            },
+            contractor: {
+                badgeText: 'Trades & Contracting Business Concept',
+                heroTitle: 'Quality Contracting & <span class="gradient-text">Remodeling Website</span>',
+                heroSubtitle: 'High-impact landing page design customized for handymen, general contractors, or home remodelers.',
+                aboutTitle: 'Built For Contractors & Trades',
+                aboutText1: 'Showcase past projects, offer instant job estimates, and let clients pay milestone invoices digitally.',
+                aboutText2: 'Fully responsive and easy to navigate on mobile devices at work sites.',
+                servicesTitle: 'Contracting Services',
+                servicesSubtitle: 'Sample cards for remodeling, repairs, and woodwork.',
+                services: [
+                    { title: "Home Remodeling", icon: "hammer", desc: "Kitchen, bath, and interior renovation project management.", price: 3500 },
+                    { title: "General Repairs", icon: "wrench", desc: "Fixing fixtures, doors, framing, and general maintenance work.", price: 220 },
+                    { title: "Custom Woodwork", icon: "paint-bucket", desc: "Bespoke cabinetry, custom shelving, and deck building.", price: 950 }
+                ],
+                addons: [
+                    { name: "Haul-Away & Debris Removal (+$150)", price: 150 },
+                    { name: "Priority Fast Scheduling (+$100)", price: 100 }
+                ],
+                reviews: [
+                    { name: "Robert Miller", role: "Homeowner", rating: 5, comment: "Great layout! It shows exact estimates and makes contacting the contractor super simple.", date: "3 days ago" },
+                    { name: "Samantha Reed", role: "Interior Stylist", rating: 5, comment: "Very clean aesthetics. Perfect for showcasing project photos and client feedback.", date: "1 week ago" }
+                ]
+            }
+        };
+
+        let currentThemeKey = 'tech';
+        let currentReviews = [];
+
+        function setTheme(themeKey) {
+            currentThemeKey = themeKey;
+            const t = themes[themeKey];
+
+            ['tech', 'cleaning', 'contractor'].forEach(key => {
+                const btn = document.getElementById(`btn-theme-${key}`);
+                if (key === themeKey) {
+                    btn.className = "px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-sky-600 text-white transition-all flex items-center gap-1 shrink-0 shadow-sm";
+                } else {
+                    btn.className = "px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all flex items-center gap-1 shrink-0";
+                }
+            });
+
+            document.getElementById('heroBadgeText').textContent = t.badgeText;
+            document.getElementById('heroTitle').innerHTML = t.heroTitle;
+            document.getElementById('heroSubtitle').innerHTML = t.heroSubtitle;
+            document.getElementById('aboutTitle').textContent = t.aboutTitle;
+            document.getElementById('aboutText1').textContent = t.aboutText1;
+            document.getElementById('aboutText2').textContent = t.aboutText2;
+            document.getElementById('servicesTitle').textContent = t.servicesTitle;
+            document.getElementById('servicesSubtitle').textContent = t.servicesSubtitle;
+
+            // Render Services Grid
+            const grid = document.getElementById('servicesGrid');
+            grid.innerHTML = '';
+            t.services.forEach(s => {
+                grid.innerHTML += `
+                    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-sky-500/50 transition-all hover:-translate-y-1 group">
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-6 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                            <i data-lucide="${s.icon}" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">${escapeHtml(s.title)}</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">${escapeHtml(s.desc)}</p>
+                        <button onclick="openModal('quoteModal', '${escapeHtml(s.title)}')" class="text-sky-400 text-xs font-bold inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Estimate Quote ($${s.price.toLocaleString()}+) <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            // Update Quote Options
+            const select = document.getElementById('quoteService');
+            select.innerHTML = '';
+            t.services.forEach(s => {
+                select.innerHTML += `<option value="${escapeHtml(s.title)}" data-price="${s.price}">${escapeHtml(s.title)} (Est. $${s.price.toLocaleString()})</option>`;
+            });
+
+            const addonsDiv = document.getElementById('quoteAddons');
+            addonsDiv.innerHTML = '';
+            t.addons.forEach((add, i) => {
+                addonsDiv.innerHTML += `
+                    <label class="flex items-center gap-2.5 text-xs text-slate-300 cursor-pointer bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                        <input type="checkbox" id="addon-${i}" onchange="calculateEstimate()" data-price="${add.price}" class="addon-check rounded bg-slate-900 border-slate-700 text-sky-600 focus:ring-0">
+                        <span>${escapeHtml(add.name)}</span>
+                    </label>
+                `;
+            });
+
+            currentReviews = [...t.reviews];
+            renderReviews();
+            calculateEstimate();
+            lucide.createIcons();
+
+            showToast("Preview Switched", `Showing sample concept for ${themeKey.toUpperCase()}.`);
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviewsGrid');
+            container.innerHTML = '';
+
+            currentReviews.forEach(rev => {
+                const starsHtml = Array(rev.rating).fill('<i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-400"></i>').join('');
+                const initials = rev.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0,2);
+
+                container.innerHTML += `
+                    <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex gap-1">${starsHtml}</div>
+                                <span class="text-[10px] text-slate-500 font-mono">${rev.date}</span>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed italic mb-6">"${escapeHtml(rev.comment)}"</p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-slate-800/60">
+                            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center font-bold text-white text-xs">
+                                ${initials}
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">${escapeHtml(rev.name)}</h4>
+                                <p class="text-[11px] text-slate-400">${escapeHtml(rev.role || 'Verified Client')}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            lucide.createIcons();
+        }
+
+        function calculateEstimate() {
+            const select = document.getElementById('quoteService');
+            if (!select || !select.options.length) return;
+            
+            const selectedOption = select.options[select.selectedIndex];
+            let basePrice = parseInt(selectedOption.getAttribute('data-price')) || 0;
+
+            const checkboxes = document.querySelectorAll('.addon-check');
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    basePrice += parseInt(cb.getAttribute('data-price')) || 0;
+                }
+            });
+
+            document.getElementById('calculatedPrice').textContent = `$${basePrice.toLocaleString()}`;
+        }
+
+        function openModal(modalId, serviceName = null) {
+            document.getElementById(modalId).classList.remove('hidden');
+            if (serviceName && modalId === 'quoteModal') {
+                const select = document.getElementById('quoteService');
+                if (select) {
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === serviceName) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+                    calculateEstimate();
+                }
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showToast(title, message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const iconName = type === 'success' ? 'check-circle' : 'info';
+            const borderColor = type === 'success' ? 'border-emerald-500/40' : 'border-sky-500/40';
+            const iconColor = type === 'success' ? 'text-emerald-400' : 'text-sky-400';
+
+            toast.className = `pointer-events-auto bg-slate-900/95 border ${borderColor} text-slate-100 px-4 py-3.5 rounded-2xl shadow-2xl flex items-start gap-3 min-w-[300px] max-w-md transform transition-all duration-300 animate-in slide-in-from-top-5`;
+            
+            toast.innerHTML = `
+                <i data-lucide="${iconName}" class="w-5 h-5 ${iconColor} shrink-0 mt-0.5"></i>
+                <div class="flex-1">
+                    <h5 class="text-xs font-bold text-white">${escapeHtml(title)}</h5>
+                    <p class="text-xs text-slate-300 mt-0.5">${escapeHtml(message)}</p>
+                </div>
+            `;
+
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-10px]');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function handleWebsiteFeedback(e) {
+            e.preventDefault();
+            const like = document.getElementById('pollLike').value;
+            const notes = document.getElementById('pollNotes').value;
+            
+            showToast("Feedback Received!", "Thank you for telling us how you'd change this website layout!");
+            document.getElementById('pollNotes').value = '';
+        }
+
+        function handleQuoteSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('quoteName').value;
+            const price = document.getElementById('calculatedPrice').textContent;
+
+            closeModal('quoteModal');
+            document.getElementById('quoteForm').reset();
+            calculateEstimate();
+
+            showToast("Quote Demo Submitted", `Thank you ${name}. Simulated quote total: ${price}`);
+        }
+
+        function handleInvoicePayment(e) {
+            e.preventDefault();
+            const btn = document.getElementById('paySubmitBtn');
+            btn.disabled = true;
+            btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Processing...`;
+            lucide.createIcons();
+
+            setTimeout(() => {
+                closeModal('invoiceModal');
+                document.getElementById('invoiceForm').reset();
+                btn.disabled = false;
+                btn.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> Process Payment`;
+                lucide.createIcons();
+
+                showToast("Payment Demo Success!", "Simulated online invoice payment processed successfully.");
+            }, 1000);
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('revName').value;
+            const role = document.getElementById('revRole').value;
+            const rating = parseInt(document.getElementById('revRating').value);
+            const comment = document.getElementById('revComment').value;
+
+            currentReviews.unshift({
+                name: name,
+                role: role || 'Verified Visitor',
+                rating: rating,
+                comment: comment,
+                date: 'Just now'
+            });
+
+            renderReviews();
+            closeModal('reviewModal');
+            document.getElementById('reviewForm').reset();
+
+            showToast("Live Review Added!", "Your review has been published to the Customer Reviews section.");
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contactForm').reset();
+            showToast("Inquiry Sent!", "Message submitted! Contact email: jessicamjaynes@gmail.com");
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        window.onload = function() {
+            setTheme('tech');
+        };
+    </script>
+</body>
+</html>
